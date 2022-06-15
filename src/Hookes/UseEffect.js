@@ -1,6 +1,5 @@
 //in App.js
 import React, { useState } from 'react'
-import Test  from "./Test";
 import TestUseEffect from './useEffectHooks';
 
 const App = () => {
@@ -8,7 +7,6 @@ const App = () => {
   const[showComp, setShowComp] = useState(true);
   return (
     <div className = 'App'>
-    <Test/>,  
     {showComp ? <TestUseEffect/> : null}
     <button onClick={() =>setShowComp(false)}>Unmount useEffect Component</button>
     </div>
