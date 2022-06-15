@@ -1,30 +1,25 @@
-import React, { Fragment} from 'react'
+import { useState, useReducer } from 'react';
+import './App.css';
 
-
-function reducer(state, dispatch) {
-    switch(action.type) {
-        case 'increment':
-            return state+1;
-        case 'decrement':
-            return state-1;
-        default:
-            throw new Error();
+function App() {
+  const initial = 0;
+  const reducer = (state, action) => {
+    switch (action) {
+      case "add": return state + 1;
+      case "sub": return state - 1;
+      case "reset": return 0;
+      default: return 0;
     }
+  }
+  const [value, dispatch] = useReducer(reducer, initial)
+  return (
+    <div className="App">
+      <h2>{value}</h2>
+
+      <button onClick={() => dispatch("add")}>Add</button>
+      <button onClick={() => dispatch("sub")}>subtract</button>
+      <button onClick={() => dispatch("reset")}>reset</button>
+    </div>
+  );
 }
-
-function UseReducer() {
-    // state is the state we want to show in the UI.
-    const [state, dispatch] = React.useReducer(reducer, 0);
-
-    return (
-        <Fragment>
-        
-        Count : {state}
-        <br></br>
-        <button onClick={() => dispatch({type:'decrement'})}>-/Decrement</button><br></br>
-        <button onClick={() => dispatch({type:'increment'})}>+/Increment</button>
-        </Fragment>
-    )
-}
-
-export default UseReducer;
+export default App;
