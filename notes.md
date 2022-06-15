@@ -250,6 +250,32 @@ useEffect :It allows us to implement all of the lifecycle hooks from within a si
 ## 19. What is UseReducer Hook ?(Implementation)
 It does very similiar to setState, It's a different way to manage state using Redux Pattern. Instead of updating the state directly, we dispatch actions, that go to a reducer function, and this function figure out, how to compute the next state.
 
+import { useState, useReducer } from 'react';
+import './App.css';
+
+function App() {
+  const initial = 0;
+  const reducer = (state, action) => {
+    switch (action) {
+      case "add": return state + 1;
+      case "sub": return state - 1;
+      case "reset": return 0;
+      default: return 0;
+    }
+  }
+  const [value, dispatch] = useReducer(reducer, initial)
+  return (
+    <div className="App">
+      <h2>{value}</h2>
+
+      <button onClick={() => dispatch("add")}>Add</button>
+      <button onClick={() => dispatch("sub")}>subtract</button>
+      <button onClick={() => dispatch("reset")}>reset</button>
+    </div>
+  );
+}
+export default App;
+
   # for Implementation: please go through src folder --> Hookes Folder. -->UseReducer.js
       
 ## 20. What is UseMemo Hook ?(Implementation)
